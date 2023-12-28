@@ -149,4 +149,6 @@ CMakeFiles/main.dir/main.cpp.o: \
  /usr/include/c++/11/bits/stl_uninitialized.h \
  /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
- /usr/include/c++/11/bits/vector.tcc
+ /usr/include/c++/11/bits/vector.tcc \
+ /home/ubuntu/program/dataStructure/stack/useStack.h \
+ /home/ubuntu/program/dataStructure/stack/myStack.h

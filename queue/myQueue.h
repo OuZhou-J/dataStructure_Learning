@@ -91,6 +91,6 @@ namespace myQueue {
         }
         std::cout << data[rear] << std::endl;
     }
-    
+
 }
 #endif

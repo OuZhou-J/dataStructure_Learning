@@ -1,6 +1,4 @@
-#include <string>
-#include "myStack.h"
-using namespace std;
+#include "useStack.h"   
 // 中缀表达式转后缀表达式
 void InfixToPostfix(string &zhongzhui, string &houzhui) {
     myStack::mystack<char> opStack;
@@ -51,7 +49,7 @@ void InfixToPostfix(string &zhongzhui, string &houzhui) {
     return;
 }
 
-int calculate(int num1, int num2, char op) {
+static int calculate(int num1, int num2, char op) {
     switch (op) {
         case '+':
             return num1 + num2;
@@ -140,4 +138,23 @@ int InfixToPostfixWithCalculate(const string &zhongzhui) {
         numStack.push(calculate(num1, num2, opStack.pop()));
     }
     return numStack.pop();
+
 }
+
+//栈混洗
+//栈混洗甄别
+bool check(std::vector<int> &in, std::vector<int> &out) {
+    myStack::mystack<int> s;
+    int loc = 0;
+    for (int i = 0; i < out.size(); ++i) {
+        while (s.isEmpty() || s.topVal() != out[i]) {
+            if (loc == in.size()) {
+                return false;
+            }
+            s.push(in[loc++]);
+        }
+        s.pop();
+    }
+    return true;
+}
+
