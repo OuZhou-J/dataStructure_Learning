@@ -4,5 +4,5 @@
 #include "useStack.h"
 using namespace std;
 int main() {
-    
+    Nqueens(8);
 }
