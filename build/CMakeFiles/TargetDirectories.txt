@@ -1,6 +1,0 @@
-/home/ubuntu/program/dataStructure/build/CMakeFiles/main.dir
-/home/ubuntu/program/dataStructure/build/CMakeFiles/edit_cache.dir
-/home/ubuntu/program/dataStructure/build/CMakeFiles/rebuild_cache.dir
-/home/ubuntu/program/dataStructure/build/stack/CMakeFiles/useStack.dir
-/home/ubuntu/program/dataStructure/build/stack/CMakeFiles/edit_cache.dir
-/home/ubuntu/program/dataStructure/build/stack/CMakeFiles/rebuild_cache.dir
