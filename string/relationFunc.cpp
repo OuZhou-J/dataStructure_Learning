@@ -82,3 +82,31 @@ string longestPalindromePrefix(string &p) {
     #endif
     return p.substr(0, next.back());
 }
+
+//214. Shortest Palindrome  https://leetcode.cn/problems/shortest-palindrome/description/
+string shortestPalindrome(string s) {
+
+        string ss = s;
+        reverse(ss.begin(), ss.end());
+        string sss = s + "#" + ss + "$";
+        int len = sss.size();
+
+        vector<int> next;
+        next.resize(len);
+        next[0] = -1;
+        int j = -1;
+        int loc = 0;
+        while (loc < len - 1) {
+            if (j == -1 || sss[loc] == sss[j]) {
+                next[++loc] = ++j;
+            }
+            else {
+                j = next[j];
+            }
+        }
+
+        int a = next[len-1];
+        int b = ss.size() - a;
+        string ans = ss.substr(0, b) + s;
+        return ans;
+    }
