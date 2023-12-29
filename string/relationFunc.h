@@ -14,6 +14,7 @@ void kmp(string &s, string &p);
 匹配位置*/
 int kmpCount(string &s, string &p); //返回匹配次数
 
-
+/*返回p的最长回文前缀*/
+string longestPalindromePrefix(string &p);
 
 #endif

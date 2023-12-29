@@ -68,3 +68,17 @@ int kmpCount(string &s, string &p)
     }
     return count;
 }
+
+string longestPalindromePrefix(string &p) {
+    string s = p;
+    reverse(s.begin(), s.end());
+    string str = p + "#" + s + "$";
+    vector<int> next = getNext(str);
+    #ifdef DEBUG
+    for (auto i : next) {
+        cout << i << " ";
+    }
+    cout << endl;
+    #endif
+    return p.substr(0, next.back());
+}

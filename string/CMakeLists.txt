@@ -2,7 +2,7 @@
 set(libname "stringFunc")
 
 #添加宏定义，DEBUG
-add_definitions(-DDEBUG)
+# add_definitions(-DDEBUG)
 
 #添加动态库
 add_library(${libname} SHARED relationFunc.cpp)
