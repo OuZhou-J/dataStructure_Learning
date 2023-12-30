@@ -3,9 +3,9 @@
 #include <string>
 #include "useStack.h"
 #include "./string/relationFunc.h"
+#include "./tree/tree.h"
 using namespace std;
 int main() {
-    string s = "abcba";
-    cout << longestPalindromePrefix(s) << endl;
+    
 }
 

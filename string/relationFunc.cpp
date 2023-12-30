@@ -17,9 +17,37 @@ static vector<int> getNext(string &s)
     return next;
 }
 
+static vector<int> getNextPro(string &s) {
+    vector<int> next(s.size(), -1);
+    int k = -1;
+    unsigned int loc = 0;
+    while (loc < s.size() - 1) {
+        if (k == -1 || s[loc] == s[k]) {
+            ++loc;
+            ++k;
+            if (s[loc] != s[k]) {
+                next[loc] = k;
+            } else {
+                next[loc] = next[k];
+            }
+        }
+        else {
+            k = next[k];
+        }
+    }
+    return next;
+}
+
 void kmp(string &s, string &p)
 {
+    #ifdef NEXTPRO
+    vector<int> next = getNextPro(p);
+    cout << "using getNextPro" << endl;
+    #else
     vector<int> next = getNext(p);
+    cout << "using getNext" << endl;
+    #endif
+
     #ifdef DEBUG
     for (auto i : next) {
         cout << i << " ";
