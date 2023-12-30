@@ -65,7 +65,7 @@ namespace stackVisit
     template <typename T>
     void preOrder(treeNode<T> *root)
     {
-        stack<treeNode<T> *> s;
+        mystack<treeNode<T> *> s;
         treeNode<T> *p = root;
         while (1)
         {
@@ -85,7 +85,7 @@ namespace stackVisit
 
     template <typename T>
     void inOrder(treeNode<T> *root) {
-        stack<treeNode<T> *> s;
+        mystack<treeNode<T> *> s;
         treeNode<T> *p = root;
         while (1) {
             while (p) {
@@ -103,7 +103,7 @@ namespace stackVisit
 
     template <typename T>
     void postOrder(treeNode<T> *root) {
-        stack<treeNode<T> *> s;
+        mystack<treeNode<T> *> s;
         treeNode<T> *cur = root, pre = nullptr;
         while (1) {
             while (cur) {
@@ -121,6 +121,30 @@ namespace stackVisit
                 cur = nullptr;
             } else {
                 cur = cur->rightChild;
+            }
+        }
+    }
+
+    template <typename T>
+    void postOrder2(treeNode<T> *root) {
+        mystack<pair<treeNode<T> *, int>> s;
+        if (root) {
+            s.push(make_pair(root, 0));
+        }
+        while (!s.empty()) {
+            pair<treeNode<T> *, int> cur = s.pop();
+            if (cur.second == 0) {
+                s.push(make_pair(cur.first, 1));
+                if (cur.first->leftChild) {
+                    s.push(make_pair(cur.first->leftChild, 0));
+                }
+            } else if (cur.second == 1) {
+                s.push(make_pair(cur.first, 2));
+                if (cur.first->rightChild) {
+                    s.push(make_pair(cur.first->rightChild, 0));
+                }
+            } else {
+                cout << cur.first->data << " ";
             }
         }
     }
