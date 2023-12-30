@@ -3,25 +3,27 @@
 
 #include <iostream>
 #include "myStack.h"
+#include "myQueue.h"
 
 namespace myTree
 {
     template <typename T>
-    struct treeNode
+    struct TreeNode
     {
         T data;
-        treeNode<T> *leftChild;
-        treeNode<T> *rightChild;
-        treeNode() : leftChild(nullptr), rightChild(nullptr) {}
-        treeNode(T x, treeNode<T> *l = nullptr, treeNode<T> *r = nullptr) : data(x), leftChild(l), rightChild(r) {}
+        TreeNode<T> *leftChild;
+        TreeNode<T> *rightChild;
+        TreeNode() : leftChild(nullptr), rightChild(nullptr) {}
+        TreeNode(T x, TreeNode<T> *l = nullptr, TreeNode<T> *r = nullptr) : data(x), leftChild(l), rightChild(r) {}
     };
 }
 
 namespace diguiVisit
 {
     using namespace myTree;
+    using namespace myQueue;
     template <typename T>
-    void preOrder(treeNode<T> *root)
+    void preOrder(TreeNode<T> *root)
     {
         if (root == nullptr)
         {
@@ -33,7 +35,7 @@ namespace diguiVisit
     }
 
     template <typename T>
-    void inOrder(treeNode<T> *root)
+    void inOrder(TreeNode<T> *root)
     {
         if (root == nullptr)
         {
@@ -45,7 +47,7 @@ namespace diguiVisit
     }
 
     template <typename T>
-    void postOrder(treeNode<T> *root)
+    void postOrder(TreeNode<T> *root)
     {
         if (root == nullptr)
         {
@@ -63,10 +65,10 @@ namespace stackVisit
     using namespace myTree;
     using namespace myStack;
     template <typename T>
-    void preOrder(treeNode<T> *root)
+    void preOrder(TreeNode<T> *root)
     {
-        mystack<treeNode<T> *> s;
-        treeNode<T> *p = root;
+        mystack<TreeNode<T> *> s;
+        TreeNode<T> *p = root;
         while (1)
         {
             while (p != nullptr)
@@ -84,9 +86,9 @@ namespace stackVisit
     }
 
     template <typename T>
-    void inOrder(treeNode<T> *root) {
-        mystack<treeNode<T> *> s;
-        treeNode<T> *p = root;
+    void inOrder(TreeNode<T> *root) {
+        mystack<TreeNode<T> *> s;
+        TreeNode<T> *p = root;
         while (1) {
             while (p) {
                 s.push(p);
@@ -102,9 +104,9 @@ namespace stackVisit
     }
 
     template <typename T>
-    void postOrder(treeNode<T> *root) {
-        mystack<treeNode<T> *> s;
-        treeNode<T> *cur = root, pre = nullptr;
+    void postOrder(TreeNode<T> *root) {
+        mystack<TreeNode<T> *> s;
+        TreeNode<T> *cur = root, pre = nullptr;
         while (1) {
             while (cur) {
                 s.push(cur);
@@ -126,13 +128,13 @@ namespace stackVisit
     }
 
     template <typename T>
-    void postOrder2(treeNode<T> *root) {
-        mystack<pair<treeNode<T> *, int>> s;
+    void postOrder2(TreeNode<T> *root) {
+        mystack<pair<TreeNode<T> *, int>> s;
         if (root) {
             s.push(make_pair(root, 0));
         }
         while (!s.empty()) {
-            pair<treeNode<T> *, int> cur = s.pop();
+            pair<TreeNode<T> *, int> cur = s.pop();
             if (cur.second == 0) {
                 s.push(make_pair(cur.first, 1));
                 if (cur.first->leftChild) {
@@ -145,6 +147,24 @@ namespace stackVisit
                 }
             } else {
                 cout << cur.first->data << " ";
+            }
+        }
+    }
+
+    template <typename T>
+    void levelOrder(TreeNode<T> *root) {
+        myQueue<TreeNode<T> *> q;
+        if (root) {
+            q.push(root);
+        }
+        while (!q.empty()) {
+            TreeNode<T> *cur = q.pop();
+            cout << cur->data << " ";
+            if (cur->leftChild) {
+                q.push(cur->leftChild);
+            }
+            if (cur->rightChild) {
+                q.push(cur->rightChild);
             }
         }
     }
