@@ -1,14 +1,8 @@
-#include "tree.h"
-#include <iostream>
-#include <vector>
-#include <functional>
-#define left leftChild
-#define right rightChild
-using TreeNode = myTree::TreeNode<int>;
-using namespace std;
+#include "useTree.h"
+
 
 //先根序列和中根序列构造二叉树  https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/
-TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+TreeNode* buildTree1(vector<int>& preorder, vector<int>& inorder) {
     function<TreeNode*(int, int, int, int)> build = [&](int preL, int preR, int inL, int inR) -> TreeNode* {
         if (preL > preR) {
             return nullptr;
@@ -29,7 +23,7 @@ TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
 
 
 //中根序列和后根序列构造二叉树  https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/description/
-TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+TreeNode* buildTree2(vector<int>& inorder, vector<int>& postorder) {
     function<TreeNode*(int, int, int, int)> build = [&](int inL, int inR, int postL, int postR) -> TreeNode* {
         if (inL > inR) {
             return nullptr;
@@ -49,8 +43,27 @@ TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
 }
 
 //中根序列和层次序列构造二叉树
-TreeNode* buildTree(vector<int>& inorder, vector<int>& levelorder) {
-    function<TreeNode*(int, int, int, int)> build = [&](int inL, int inR, int levelL, int levelR) -> TreeNode* {
-        
+TreeNode* buildTree3(vector<int>& inorder, vector<int>& levelorder) {
+    function<TreeNode*(int, int, int)> build = [&](int il, int ir, int levelloc) -> TreeNode* {
+        if (il > ir) {
+            return nullptr;
+        }
+        int k = levelloc;
+        int loc;
+        for (; k < levelorder.size(); ++k) {
+            for (loc = il; loc <= ir; ++loc) {
+                if (inorder[loc] == levelorder[k]) {
+                    break;
+                }
+            }
+            if (loc <= ir) {
+                break;
+            }
+        }
+        TreeNode* root = new TreeNode(levelorder[k]);
+        root->leftChild = build(il, loc - 1, k + 1);
+        root->rightChild = build(loc + 1, ir, k + 1);
+        return root;
     };
+    return build(0, inorder.size() - 1, 0);
 }

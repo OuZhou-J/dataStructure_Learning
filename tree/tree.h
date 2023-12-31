@@ -2,9 +2,9 @@
 #define TREE_H
 
 #include <iostream>
-#include "myStack.h"
-#include "myQueue.h"
-
+#include "../stack/myStack.h"
+#include "../queue/myQueue.h"
+using namespace std;
 namespace myTree
 {
     template <typename T>
@@ -23,7 +23,7 @@ namespace diguiVisit
     using namespace myTree;
     using namespace myQueue;
     template <typename T>
-    void preOrder(TreeNode<T> *root)
+    void preOrder(myTree::TreeNode<T> *root)
     {
         if (root == nullptr)
         {
@@ -35,7 +35,7 @@ namespace diguiVisit
     }
 
     template <typename T>
-    void inOrder(TreeNode<T> *root)
+    void inOrder(myTree::TreeNode<T> *root)
     {
         if (root == nullptr)
         {
@@ -47,7 +47,7 @@ namespace diguiVisit
     }
 
     template <typename T>
-    void postOrder(TreeNode<T> *root)
+    void postOrder(myTree::TreeNode<T> *root)
     {
         if (root == nullptr)
         {
@@ -64,8 +64,9 @@ namespace stackVisit
 {
     using namespace myTree;
     using namespace myStack;
+    using namespace myQueue;
     template <typename T>
-    void preOrder(TreeNode<T> *root)
+    void preOrder(myTree::TreeNode<T> *root)
     {
         mystack<TreeNode<T> *> s;
         TreeNode<T> *p = root;
@@ -86,7 +87,7 @@ namespace stackVisit
     }
 
     template <typename T>
-    void inOrder(TreeNode<T> *root) {
+    void inOrder(myTree::TreeNode<T> *root) {
         mystack<TreeNode<T> *> s;
         TreeNode<T> *p = root;
         while (1) {
@@ -104,7 +105,7 @@ namespace stackVisit
     }
 
     template <typename T>
-    void postOrder(TreeNode<T> *root) {
+    void postOrder(myTree::TreeNode<T> *root) {
         mystack<TreeNode<T> *> s;
         TreeNode<T> *cur = root, pre = nullptr;
         while (1) {
@@ -128,7 +129,7 @@ namespace stackVisit
     }
 
     template <typename T>
-    void postOrder2(TreeNode<T> *root) {
+    void postOrder2(myTree::TreeNode<T> *root) {
         mystack<pair<TreeNode<T> *, int>> s;
         if (root) {
             s.push(make_pair(root, 0));
@@ -152,8 +153,8 @@ namespace stackVisit
     }
 
     template <typename T>
-    void levelOrder(TreeNode<T> *root) {
-        myQueue<TreeNode<T> *> q;
+    void levelOrder(myTree::TreeNode<T> *root) {
+        myqueue<TreeNode<T> *> q;
         if (root) {
             q.push(root);
         }

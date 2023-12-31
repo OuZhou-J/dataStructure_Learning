@@ -8,4 +8,4 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tree)
 
 add_executable(${target} main.cpp)
 
-target_link_libraries(${target} useStack stringFunc)
+target_link_libraries(${target} useStack stringFunc useTree)
