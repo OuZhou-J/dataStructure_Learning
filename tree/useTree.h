@@ -15,3 +15,6 @@ TreeNode* buildTree2(vector<int>& inorder, vector<int>& postorder);
 
 //中根序列和层次序列构造二叉树
 TreeNode* buildTree3(vector<int>& inorder, vector<int>& levelorder);
+
+//给定先根序列和后根序列，输出可能有多少种二叉树结构 https://www.luogu.com.cn/problem/P1229
+int countTree(vector<int>& preorder, vector<int>& postorder);

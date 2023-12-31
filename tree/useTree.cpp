@@ -67,3 +67,17 @@ TreeNode* buildTree3(vector<int>& inorder, vector<int>& levelorder) {
     };
     return build(0, inorder.size() - 1, 0);
 }
+
+
+int countTree(vector<int>& preorder, vector<int>& postorder) {
+    int n = preorder.size();
+    int ans = 1;
+    for (int i = 0; i < n; ++i) {
+        for (int j = 1; j < n; ++j) {
+            if (preorder[i] == postorder[j] && preorder[i + 1] == postorder[j - 1]) {
+                ans *= 2;
+            }
+        }
+    }
+    return ans;
+}
