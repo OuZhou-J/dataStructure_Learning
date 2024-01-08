@@ -81,3 +81,65 @@ int countTree(vector<int>& preorder, vector<int>& postorder) {
     }
     return ans;
 }
+
+namespace binarySearchTree {
+    using BSTnode = myTree::TreeNode<int>;
+
+    BSTnode* searchDiGui(BSTnode* root, int k) {
+        if (root == nullptr || root->data == k) {
+            return root;
+        }
+        return root->data < k ? searchDiGui(root->right, k) : searchDiGui(root->left, k);
+    }    
+
+    BSTnode* searchDieDai(BSTnode* root, int k) {
+        BSTnode* p = root;
+        while (p) {
+            if (p->data == k) {
+                return p;
+            }
+            p = p->data < k ? p->right : p->left;
+        }
+        return nullptr;
+    }
+
+    void Insert(BSTnode* &root, int k) {
+        if (!root) {
+            root = new BSTnode(k);
+        }
+        if (root->data < k) {
+            Insert(root->right, k);   
+        }
+        else if (root->data > k) {
+            Insert(root->left, k);
+        }
+        else {
+            return;
+        }
+    }
+
+
+    void remove(BSTnode* &root, int k) {
+        if (!root) { return; }
+        else if (root->data < k) {
+            remove(root->right, k);
+        }
+        else if (root->data > k) {
+            remove(root->left, k);
+        }
+        else if (root->left && root->right) {
+            BSTnode* tmp = root->left;
+            while (tmp->right) {
+                tmp = tmp->right;
+            }
+            root->data = tmp->data;
+            remove(root->left, tmp->data);
+        }
+        else {
+            BSTnode* tmp = root;
+            root = root->right ? root->right : root->left;
+            delete(tmp);
+        }
+    }
+
+}
