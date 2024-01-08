@@ -18,3 +18,27 @@ TreeNode* buildTree3(vector<int>& inorder, vector<int>& levelorder);
 
 //给定先根序列和后根序列，输出可能有多少种二叉树结构 https://www.luogu.com.cn/problem/P1229
 int countTree(vector<int>& preorder, vector<int>& postorder);
+
+namespace binarySearchTree {
+    using BSTnode = myTree::TreeNode<int>;
+    void print(BSTnode* root);
+    BSTnode* searchDiGui(BSTnode* root, int k);
+    BSTnode* searchDieDai(BSTnode* root, int k);
+    void Insert(BSTnode* &root, int k);
+    void remove(BSTnode* &root, int k);
+}
+
+namespace HuffmanTree {
+    using info = struct info {
+        char c;
+        int wei;
+        info(char c, int wei) : c(c), wei(wei){}
+
+        friend ostream& operator<<(ostream& os, const info& i) {
+            os << "(" << i.c << ", " << i.wei << ")";
+            return os;
+        }
+    };
+    using HuffmanNode = myTree::TreeNode<info>;
+    HuffmanNode* CreateHuffmanNode(const vector<char> &chars, vector<int> freq);
+}

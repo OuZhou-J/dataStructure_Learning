@@ -1,6 +1,5 @@
 #include "useTree.h"
 
-
 //先根序列和中根序列构造二叉树  https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/
 TreeNode* buildTree1(vector<int>& preorder, vector<int>& inorder) {
     function<TreeNode*(int, int, int, int)> build = [&](int preL, int preR, int inL, int inR) -> TreeNode* {
@@ -82,6 +81,7 @@ int countTree(vector<int>& preorder, vector<int>& postorder) {
     return ans;
 }
 
+
 namespace binarySearchTree {
     using BSTnode = myTree::TreeNode<int>;
 
@@ -141,5 +141,33 @@ namespace binarySearchTree {
             delete(tmp);
         }
     }
+}
 
+
+namespace HuffmanTree {
+    HuffmanNode* CreateHuffmanNode(const vector<char> &chars, vector<int> freq) {
+        int size = chars.size();
+        vector<HuffmanNode*> house;
+        for (int i = 0; i < size; ++i) {
+            house.push_back(new HuffmanNode(info(chars[i], freq[i])));
+        }
+        sort(house.begin(), house.end(), [](HuffmanNode* a, HuffmanNode* b) -> bool {
+            return a->data.wei < b->data.wei;
+        });
+
+        for (int i = 0; i < size - 1; ++i) {
+            HuffmanNode *tmp1 = house[i];
+            HuffmanNode *tmp2 = house[i+1];
+            HuffmanNode *newnode = new HuffmanNode(info(' ', tmp1->data.wei + tmp2->data.wei));
+            newnode->left = tmp1;
+            newnode->right = tmp2;
+            int j = i + 2;
+            while (j < size && house[j]->data.wei < newnode->data.wei) {
+                house[j-1] = house[j];
+                j++;
+            }
+            house[j-1] = newnode;
+        }
+        return house.back();
+    }
 }
