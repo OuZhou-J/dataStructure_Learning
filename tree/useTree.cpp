@@ -170,4 +170,18 @@ namespace HuffmanTree {
         }
         return house.back();
     }
+
+    //编码
+    void printHuffmanTreeCode(HuffmanNode* root, string code) {
+        if (root->left == nullptr && root->right == nullptr) {
+            cout << root->data.c << ": " << code << endl;
+            return;
+        }
+        printHuffmanTreeCode(root->left, code + "0");
+        printHuffmanTreeCode(root->right, code + "1");
+    }
+
+    void printHuffmanTreeCode(HuffmanNode* root) {
+        printHuffmanTreeCode(root, "");
+    }
 }

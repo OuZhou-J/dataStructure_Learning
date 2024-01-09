@@ -41,4 +41,5 @@ namespace HuffmanTree {
     };
     using HuffmanNode = myTree::TreeNode<info>;
     HuffmanNode* CreateHuffmanNode(const vector<char> &chars, vector<int> freq);
+    void printHuffmanTreeCode(HuffmanNode* root);
 }
